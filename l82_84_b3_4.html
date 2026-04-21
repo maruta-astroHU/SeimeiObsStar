@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>l=82–84, b=3–4 Results</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        h1 {
+            margin: 8px 0 16px;
+            font-size: 22px;
+        }
+
+        h2 {
+            margin: 28px 0 12px;
+            font-size: 18px;
+        }
+
+        h3 {
+            margin: 12px 0 8px;
+            font-size: 15px;
+        }
+
+        .note {
+            opacity: 0.85;
+            font-size: 13px;
+        }
+
+        .embed {
+            border: 1px solid rgba(127, 127, 127, 0.35);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 720px;
+            border: 0;
+            display: block;
+            background: transparent;
+        }
+
+        .gallery-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        input[type="search"] {
+            width: min(520px, 100%);
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(127, 127, 127, 0.35);
+            background: transparent;
+        }
+
+        .stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .stack figure {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        figure {
+            margin: 0;
+            padding: 10px;
+            border: 1px solid rgba(127, 127, 127, 0.25);
+            border-radius: 10px;
+        }
+
+        figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            font-size: 12px;
+            word-break: break-all;
+            opacity: 0.9;
+        }
+
+        .meta {
+            font-size: 12px;
+            opacity: 0.85;
+            margin: 6px 0 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        @media (min-width: 1000px) {
+            iframe {
+                height: 760px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>l=82–84, b=3–4（結果まとめ）</h1>
+
+        <h2>Cygnus全体の観測星（mom1 重ね合わせ）</h2>
+        <div class="column">
+            <section>
+                <h3>全距離</h3>
+                <div class="embed">
+                    <iframe src="CygObsStar_lb_with_mom1.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+                </div>
+                <p class="meta"><a href="CygObsStar_lb_with_mom1.html">別タブで開く</a>（CygObsStar_lb_with_mom1.html）</p>
+            </section>
+            <section>
+                <h3>1.0kpcより遠方の星</h3>
+                <div class="embed">
+                    <iframe src="CygObsStar_lb_with_mom1_1000.html" loading="lazy"
+                        referrerpolicy="no-referrer"></iframe>
+                </div>
+                <p class="meta"><a
+                        href="CygObsStar_lb_with_mom1_1000.html">別タブで開く</a>（CygObsStar_lb_with_mom1_1000.html）</p>
+            </section>
+        </div>
+
+        <h2>l82_84_b3_4 配下の結果</h2>
+        <div class="gallery-header">
+            <p class="note">画像フォルダ: <span>./png_l82_84_b3_4/</span></p>
+            <div class="gallery-controls">
+                <label class="note" for="q">検索</label>
+                <input id="q" type="search" placeholder="例: 21664 または LineProfiles_overlaid" />
+            </div>
+        </div>
+        <p id="count" class="meta"></p>
+        <section>
+            <h3>line profileの重ね合わせ</h3>
+            <div id="overlaid" class="stack" aria-live="polite"></div>
+        </section>
+        <div id="gallery" class="stack" aria-live="polite"></div>
+
+        <script>
+            // GitHub Pages での利用を想定：このHTMLと同階層にある ./png_l82_84_b3_4/ 配下に画像が置かれている前提です。
+            // ただしローカル実行時のために ./l82_84_b3_4/ もフォールバックとして試します。
+            // どちらも「ディレクトリ一覧の自動取得」はできないため、生成時点の成果物ファイル名を埋め込んでいます。
+            const filesText = `
+LineProfile_2069381733611460608.png
+LineProfile_2070613942546145792.png
+LineProfile_2070617412879794816.png
+LineProfile_2070627544700297472.png
+LineProfile_2070630366501108480.png
+LineProfile_2070641185516427520.png
+LineProfile_2070643285762930304.png
+LineProfile_2070648886400389120.png
+LineProfile_2070649779753566336.png
+LineProfile_2070655925844201472.png
+LineProfile_2070658232249041664.png
+LineProfile_2070659675358080896.png
+LineProfile_2070664142124266112.png
+LineProfile_2070670292517594240.png
+LineProfile_2070740695624001152.png
+LineProfile_2070743066446234368.png
+LineProfile_2070748735804904704.png
+LineProfile_2070752343577463168.png
+LineProfile_2070758592743143552.png
+LineProfile_2070762028716462080.png
+LineProfile_2070768831945185152.png
+LineProfile_2070769179847623168.png
+LineProfile_2070770244999581184.png
+LineProfile_2070773131217501056.png
+LineProfile_2070780209324101504.png
+LineProfile_2070781892951168384.png
+LineProfile_2070782335322353408.png
+LineProfile_2070795980443906816.png
+LineProfile_2070800923940794496.png
+LineProfile_2070801782934253568.png
+LineProfile_2070806215339805440.png
+LineProfile_2070814981381155456.png
+LineProfile_2070818516129410048.png
+LineProfile_2070825873418456832.png
+LineProfile_2070827106063997696.png
+LineProfile_2070829824788088960.png
+LineProfile_2070834600791846784.png
+LineProfile_2070837796247634176.png
+LineProfile_2070838895759247872.png
+LineProfile_2070841846391750784.png
+LineProfile_2070842950208417920.png
+LineProfile_2070845767706972416.png
+LineProfile_2070849096296549632.png
+LineProfile_2070855835110873344.png
+LineProfile_2070856968984910848.png
+LineProfile_2070857037701714560.png
+LineProfile_2070858132907732736.png
+LineProfile_2070865936874055296.png
+LineProfile_2070872117318026240.png
+LineProfile_2070872323476456320.png
+LineProfile_2070873560430282752.png
+LineProfile_2070876034331442432.png
+LineProfile_2070876725832046720.png
+LineProfile_2070878684337045760.png
+LineProfile_2070888476862916224.png
+LineProfile_2070892496952614144.png
+LineProfile_2070917201604923008.png
+LineProfile_2070928746477383680.png
+LineProfile_2070928883916322560.png
+LineProfile_2070952553470772992.png
+LineProfile_2070953932166032128.png
+LineProfile_2070954099658998656.png
+LineProfile_2070961246485025792.png
+LineProfile_2070966782708484480.png
+LineProfile_2070971382607394816.png
+LineProfile_2070972486424976384.png
+LineProfile_2070977502946665856.png
+LineProfile_2070980560963628800.png
+LineProfile_2070983408514011520.png
+LineProfile_2070983584620596608.png
+LineProfile_2070984787211421440.png
+LineProfile_2070986432170980352.png
+LineProfile_2070987639070331648.png
+LineProfile_2070988528117281792.png
+LineProfile_2070994545377865088.png
+LineProfile_2070996435163886208.png
+LineProfile_2071004956378397440.png
+LineProfile_2071011656527487872.png
+LineProfile_2071013683752419200.png
+LineProfile_2071013954321407104.png
+LineProfile_2071014607156434304.png
+LineProfile_2071016054574237952.png
+LineProfile_2071023510638073344.png
+LineProfile_2071176858140488448.png
+LineProfile_2071178266895259392.png
+LineProfile_2071181939078897536.png
+LineProfile_2071182317041288064.png
+LineProfile_2071393560709931776.png
+LineProfiles_overlaid.png
+				`.trim();
+
+            const baseDirCandidates = ["png_l82_84_b3_4/", "l82_84_b3_4/"];
+            let baseDir = baseDirCandidates[0];
+            const files = filesText
+                .split(/\r?\n/)
+                .map((s) => s.trim())
+                .filter((s) => s && !s.startsWith("."));
+
+            const overlaidName = "LineProfiles_overlaid.png";
+
+            const q = document.getElementById("q");
+            const overlaid = document.getElementById("overlaid");
+            const gallery = document.getElementById("gallery");
+            const count = document.getElementById("count");
+
+            function pickBaseDir() {
+                // overlaidName が存在する前提で、最初に読み込み成功した候補を採用
+                return new Promise((resolve) => {
+                    const tryNext = (index) => {
+                        if (index >= baseDirCandidates.length) {
+                            resolve(baseDirCandidates[0]);
+                            return;
+                        }
+
+                        const candidate = baseDirCandidates[index];
+                        const probe = new Image();
+                        probe.onload = () => resolve(candidate);
+                        probe.onerror = () => tryNext(index + 1);
+                        probe.src = candidate + overlaidName + "?v=" + Date.now();
+                    };
+
+                    tryNext(0);
+                });
+            }
+
+            function makeFigure(name) {
+                const figure = document.createElement("figure");
+                const link = document.createElement("a");
+                link.href = baseDir + name;
+                link.target = "_blank";
+                link.rel = "noopener";
+
+                const img = document.createElement("img");
+                img.loading = "lazy";
+                img.decoding = "async";
+                img.alt = name;
+                img.src = baseDir + name;
+
+                link.appendChild(img);
+                figure.appendChild(link);
+
+                const caption = document.createElement("figcaption");
+                caption.textContent = name;
+                figure.appendChild(caption);
+
+                return figure;
+            }
+
+            function render() {
+                const query = (q.value || "").trim().toLowerCase();
+                overlaid.innerHTML = "";
+                gallery.innerHTML = "";
+                let shown = 0;
+
+                // overlaid は常に先頭表示（検索対象外にせず、検索に合致する場合だけ表示）
+                if (!query || overlaidName.toLowerCase().includes(query)) {
+                    if (files.includes(overlaidName)) {
+                        overlaid.appendChild(makeFigure(overlaidName));
+                        shown += 1;
+                    }
+                }
+
+                for (const name of files) {
+                    if (name === overlaidName) continue;
+                    if (query && !name.toLowerCase().includes(query)) continue;
+
+                    gallery.appendChild(makeFigure(name));
+                    shown += 1;
+                }
+
+                const total = files.length;
+                if (query) count.textContent = `表示: ${shown} / ${total}（検索: "${q.value}"）`;
+                else count.textContent = `表示: ${shown} / ${total}`;
+            }
+
+            q.addEventListener("input", render);
+            pickBaseDir().then((picked) => {
+                baseDir = picked;
+                render();
+            });
+        </script>
+    </main>
+</body>
+
+</html>
